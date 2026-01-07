@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Classifica - PINO Giochi</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <div class="container">
+    <h1>Classifica</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="scoreboard">
+    <h2>Classifica Punteggi</h2>
+    <table>
+      <thead>
+        <tr><th>Gioco</th><th>Punteggio</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Clicca il Bottone</td><td id="score-gioco1">0</td></tr>
+        <tr><td>Indovina il Numero</td><td id="score-gioco2">0</td></tr>
+        <tr><td>Snake Arcade</td><td id="score-gioco3">0</td></tr>
+        <tr><td>Memory Game</td><td id="score-gioco4">0</td></tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 PINO Giochi</p>
+  </div>
+</footer>
+
+<script>
+  ['gioco1','gioco2','gioco3','gioco4'].forEach(g => {
+    const s = localStorage.getItem(g+'_punteggio');
+    if(s!==null){ document.getElementById('score-'+g).textContent = s; }
+  });
+</script>
+
+</body>
+</html>

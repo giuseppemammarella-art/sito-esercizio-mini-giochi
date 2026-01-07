@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snake Arcade</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+body {text-align:center; font-family:'Segoe UI'; background:#090a1a; color:#fff;}
+canvas {background:#1b1f3b; margin-top:30px; border:2px solid #0ff;}
+#score {font-size:1.5rem; margin-top:20px;}
+</style>
+</head>
+<body>
+<h1>Snake Arcade 🐍</h1>
+<canvas id="game" width="400" height="400"></canvas>
+<div id="score">Punteggio: 0</div>
+
+<script>
+const canvas = document.getElementById('game');
+const ctx = canvas.getContext('2d');
+
+const box = 20;
+let snake = [{x: 9*box, y:10*box}];
+let dir = '';
+let food = {x: Math.floor(Math.random()*20)*box, y: Math.floor(Math.random()*20)*box};
+let score = 0;
+
+document.addEventListener('keydown', e => {
+  if(e.key==='ArrowUp' && dir!=='DOWN') dir='UP';
+  if(e.key==='ArrowDown' && dir!=='UP') dir='DOWN';
+  if(e.key==='ArrowLeft' && dir!=='RIGHT') dir='LEFT';
+  if(e.key==='ArrowRight' && dir!=='LEFT') dir='RIGHT';
+});
+
+function draw(){
+  ctx.fillStyle='#1b1f3b';
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  // snake
+  snake.forEach((s,index)=>{
+    ctx.fillStyle = index===0?'#0ff':'#0f0';
+    ctx.fillRect(s.x,s.y,box,box);
+    ctx.strokeStyle='#fff';
+    ctx.strokeRect(s.x,s.y,box,box);
+  });
+
+  // food
+  ctx.fillStyle='#f0f';
+  ctx.fillRect(food.x,food.y,box,box);
+
+  // move snake
+  let head = {x:snake[0].x, y:snake[0].y};
+  if(dir==='UP') head.y -= box;
+  if(dir==='DOWN') head.y += box;
+  if(dir==='LEFT') head.x -= box;
+  if(dir==='RIGHT') head.x += box;
+
+  // collision wall
+  if(head.x<0 || head.x>=canvas.width || head.y<0 || head.y>=canvas.height || snake.some(s=>s.x===head.x && s.y===head.y)){
+    clearInterval(game);
+    alert('Game Over! Punteggio: '+score);
+    const best = localStorage.getItem('gioco3_punteggio');
+    if(!best || score>best){ localStorage.setItem('gioco3_punteggio', score); }
+  }
+
+  snake.unshift(head);
+
+  // eat food
+  if(head.x===food.x && head.y===food.y){
+    score++;
+    document.getElementById('score').textContent='Punteggio: '+score;
+    food = {x: Math.floor(Math.random()*20)*box, y: Math.floor(Math.random()*20)*box};
+  } else {
+    snake.pop();
+  }
+}
+
+const game = setInterval(draw,100);
+</script>
+</body>
+</html>

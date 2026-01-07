@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indovina il Numero</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<h1>Indovina il Numero 🎲</h1>
+<p>Inserisci un numero da 1 a 100:</p>
+<input type="number" id="guess" min="1" max="100">
+<button id="btn">Prova</button>
+<p id="msg"></p>
+
+<script>
+let target = Math.floor(Math.random()*100)+1;
+let score = 0;
+const msg = document.getElementById('msg');
+document.getElementById('btn').addEventListener('click', ()=>{
+  const val = parseInt(document.getElementById('guess').value);
+  score++;
+  if(val === target){
+    msg.textContent = `🎉 Hai indovinato in ${score} tentativi!`;
+    const best = localStorage.getItem('gioco2_punteggio');
+    if(!best || score<best){ localStorage.setItem('gioco2_punteggio', score); }
+  } else if(val<target){ msg.textContent='Troppo basso!'; }
+  else{ msg.textContent='Troppo alto!'; }
+});
+</script>
+</body>
+</html>

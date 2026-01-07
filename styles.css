@@ -1,0 +1,56 @@
+/* RESET */
+* {margin:0; padding:0; box-sizing:border-box;}
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top, #1b1f3b, #090a1a);
+  color:#fff;
+}
+header {
+  background: linear-gradient(90deg, #6a00ff, #ff007a);
+  padding:2rem 0;
+  text-align:center;
+  box-shadow:0 0 30px rgba(255,0,122,0.6);
+}
+header h1 {
+  font-size:3rem;
+  text-shadow:0 0 15px rgba(255,255,255,0.8);
+}
+nav ul {list-style:none; display:flex; justify-content:center; margin-top:10px;}
+nav a {color:white; text-decoration:none; font-weight:bold;}
+main {padding:3rem 5%;}
+.games h2 {text-align:center; font-size:2rem; margin-bottom:40px;}
+.games {display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:30px;}
+.game-card {
+  background:rgba(255,255,255,0.05);
+  border-radius:18px;
+  overflow:hidden;
+  text-align:center;
+  transition: all 0.4s ease;
+  position:relative;
+}
+.game-card:hover {transform: translateY(-12px) scale(1.05);}
+.card-img {
+  height:180px;
+  background-size:cover;
+  background-position:center;
+  filter: brightness(0.85);
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+.game-card:hover .card-img {transform: scale(1.1); filter: brightness(1);}
+.game-card h3 {padding:20px; font-size:1.4rem; color:#fff;}
+.game-card a {text-decoration:none; color:inherit;}
+
+/* NEON COLORS */
+.neon-blue {box-shadow:0 0 20px rgba(0,140,255,0.5);}
+.neon-pink {box-shadow:0 0 20px rgba(255,0,150,0.5);}
+.neon-green {box-shadow:0 0 20px rgba(0,255,100,0.5);}
+.neon-purple {box-shadow:0 0 20px rgba(150,0,255,0.5);}
+
+/* IMMAGINI */
+.game1-img {background-image:url("images/game1.jpg");}
+.game2-img {background-image:url("images/game2.jpg");}
+.game3-img {background-image:url("images/snake.jpg");}
+.game4-img {background-image:url("images/memory.jpg");}
+
+/* FOOTER */
+footer {text-align:center; padding:1.5rem; margin-top:60px; opacity:0.7;}
